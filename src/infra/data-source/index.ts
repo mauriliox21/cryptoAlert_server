@@ -1,0 +1,1 @@
+export { userData } from "./local-user"
