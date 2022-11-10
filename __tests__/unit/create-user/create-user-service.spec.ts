@@ -22,8 +22,8 @@ describe("CreateUserService", () => {
         try{
             const res = await sut.execute(createdUser);
         }catch(erro: Error|any){
-            console.log(JSON.parse(erro.message)[0].path[0])
-            expect(JSON.parse(erro.message)[0].path[0]).toBe("name")
+            
+            expect(erro.name).toBe("InvalidParametersError")
         }
     })
 })

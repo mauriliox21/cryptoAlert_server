@@ -1,5 +1,7 @@
 import { User } from "../../entities"
 import { ValidationUser } from "../contracts"
+import { formatErrorMessage } from "../format-error-message";
+import { InvalidParametersError } from "../../errors";
 import { z } from "zod"
 
 export class ValidationCreateUser implements ValidationUser {
@@ -18,13 +20,7 @@ export class ValidationCreateUser implements ValidationUser {
             validUser.parse(data.props);
         }catch(erro: Error|any){
 
-            const validationError = JSON.parse(erro.message);
-            let message = '';
-            for(let i = 0; validationError.length > i; i++){
-                message += validationError[i].message + ';'
-            }
-            
-            throw new Error(message)
+            throw new InvalidParametersError(formatErrorMessage(erro.message))
         }
     }
 }
