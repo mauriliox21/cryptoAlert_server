@@ -1,6 +1,5 @@
-import { User } from "../../../src/domain/entities"
-import { makeCreateUserService } from "../../factories/create-user-service"
-import { ZodError } from "zod"
+import { User } from "../../src/domain/entities"
+import { makeCreateUserService } from "../factories/create-user-service"
 
 describe("CreateUserService", () => {
     it("Should be able to create a new user", async () => {

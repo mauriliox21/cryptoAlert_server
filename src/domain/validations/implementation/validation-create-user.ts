@@ -4,6 +4,10 @@ import { formatErrorMessage } from "../format-error-message";
 import { InvalidParametersError } from "../../errors";
 import { z } from "zod"
 
+/**
+ * function used to validate object User for creation, if validation fail throw error
+ * @param {string} data Object type class User.
+ */
 export class ValidationCreateUser implements ValidationUser {
     validate(data: User): void {
         try{
