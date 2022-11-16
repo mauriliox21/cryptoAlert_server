@@ -3,4 +3,4 @@ export class InvalidParametersError extends Error {
       super(message)
       this.name = 'InvalidParametersError'
     }
-  }
+}

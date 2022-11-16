@@ -1,5 +1,5 @@
 import { User } from "../../src/domain/entities"
-import { makeCreateUserService } from "../factories/create-user-service"
+import { makeCreateUserService } from "../factories"
 
 describe("CreateUserService", () => {
     it("Should be able to create a new user", async () => {

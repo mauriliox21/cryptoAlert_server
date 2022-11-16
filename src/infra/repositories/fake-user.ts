@@ -1,6 +1,8 @@
 import { UserModel} from "../../data/models"
 import { UserRepository } from "../../data/contracts"
 import { userData } from "../data-source"
+import { User } from "../../domain/entities";
+import { strict } from "assert";
 
 export class FakeUserRepository implements UserRepository{
     async create(data: UserModel): Promise<UserModel>{
@@ -12,5 +14,16 @@ export class FakeUserRepository implements UserRepository{
         });
 
         return data
+    }
+
+    async findByEmail(email: string): Promise<UserModel | null>{
+        const userFinded = userData.find(user => user.email == email)
+
+        if(!userFinded){
+            return null
+        }
+        else{
+            return new User({name: userFinded.name, email: userFinded.email, password: userFinded.password}, userFinded.id)
+        }
     }
 }
