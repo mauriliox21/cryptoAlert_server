@@ -2,7 +2,7 @@ import { makeAuthenticateUser } from "../factories"
 import {verify} from "jsonwebtoken"
 
 describe("AuthenticateUserService", () => {
-    it("Should be able to returns error messge if user not exists", async () => {
+    it("Should be able to returns error message if user not exists", async () => {
         const sut = makeAuthenticateUser();
 
         try{
@@ -12,7 +12,7 @@ describe("AuthenticateUserService", () => {
         }
     })
 
-    it("Should be able to returns error messge if password is incorrect", async () => {
+    it("Should be able to returns error message if password is incorrect", async () => {
         const sut = makeAuthenticateUser();
 
         try{

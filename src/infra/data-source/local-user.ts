@@ -30,5 +30,11 @@ export const userData: FakeUserDataType[] = [
         name: faker.name.fullName(),
         email: "user.test.authentication@test.com",
         password: hashSync("alaba321", roundsCryptography)
+    },
+    {
+        id: faker.datatype.uuid(),
+        name: faker.name.fullName(),
+        email: "user.test.already.exists@test.com",
+        password: hashSync("ghama321", roundsCryptography)
     }
 ]
