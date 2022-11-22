@@ -17,23 +17,31 @@ describe("CreateUserService", () => {
         const sut = makeCreateUserService()
 
         const createdUser = User.create({name: "", email: "new.user@gmail.com", password: "user1234"})
+        let ocurredError = false
 
         try{
             const res = await sut.execute(createdUser)
         }catch(erro: Error|any){
             expect(erro.name).toBe("InvalidParametersError")
+            ocurredError = true
         }
+
+        expect(ocurredError).toBe(true)
     })
 
     it("Should not be able to create duplicated user", async () => {
         const sut = makeCreateUserService()
 
         const createdUser = User.create({name: "Duplicated User", email: "user.test.already.exists@test.com", password: "user1234"})
+        let ocurredError = false
 
         try{
             const res = await sut.execute(createdUser)
         }catch(erro: Error|any){
             expect(erro.name).toBe("RecordAlreadyExistsError")
+            ocurredError = true
         }
+        
+        expect(ocurredError).toBe(true)
     })
 })

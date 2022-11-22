@@ -13,7 +13,7 @@ export class CreateUserService {
         this.validation.validate(data)
 
         if(await this.userRepository.findByEmail(data.props.email) != null)
-            throw new RecordAlreadyExistsError("E-mail already exists in system")
+            throw new RecordAlreadyExistsError("User already exists in system")
 
         return this.userRepository.create(data)
     }

@@ -17,8 +17,18 @@ describe("CreateUserController", () => {
 
         const res = await sut.execute({body: {name: "", email: "new.user@gmail.com", password: "user1234"}})
 
-        expect(res.statusCode).toBe(500)
+        expect(res.statusCode).toBe(400)
         expect(res.responseBody.typeResponse).toBe("error")
         expect(res.responseBody.message).toContain("Name must be 3 or more characters long")
+    })
+
+    it("Should be able to returns error message if user already exists", async () => {
+        const sut = makeCreateUserController()
+
+        const res = await sut.execute({body: {name: "Duplicated User", email: "user.test.already.exists@test.com", password: "user1234"}})
+
+        expect(res.statusCode).toBe(400)
+        expect(res.responseBody.typeResponse).toBe("error")
+        expect(res.responseBody.message).toContain("User already exists in system")
     })
 })
