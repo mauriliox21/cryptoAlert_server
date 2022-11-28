@@ -26,4 +26,15 @@ export class FakeUserRepository implements UserRepository{
             return new User({name: userFinded.name, email: userFinded.email, password: userFinded.password}, userFinded.id)
         }
     }
+
+    async findById (id: string): Promise<User|null>{
+        const userFinded = userData.find(user => user.id == id)
+
+        if(!userFinded){
+            return null
+        }
+        else{
+            return new User({name: userFinded.name, email: userFinded.email, password: userFinded.password}, userFinded.id)
+        }
+    }
 }

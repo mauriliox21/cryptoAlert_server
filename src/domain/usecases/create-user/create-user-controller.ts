@@ -11,10 +11,9 @@ export class CreateUserController implements Controller{
         try{
             const newUser = User.create({name: request.body.name ?? "", email: request.body.email ?? "", password: request.body.password ?? ""})
             const createdUser = UserViewModel.map(await this.createUserService.execute(newUser))
-            // return {statusCode: 201, responseBody: {typeResponse: TypeResponse.success, message: "User created with successful", data: createdUser}}
             return HttpResponse.created(createdUser, "User created with successful")
         }catch(error: Error|any){
-            return HttpResponse.verifyTypeError(error)//{statusCode: 500, responseBody: {typeResponse: TypeResponse.error, message: error.message}}
+            return HttpResponse.verifyTypeError(error)
         }
     }
 }

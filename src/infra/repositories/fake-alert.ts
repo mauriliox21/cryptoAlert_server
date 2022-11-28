@@ -8,9 +8,22 @@ export class FakeAlertRepository implements AlertRepository{
         alertData.push({
             id: data.id, 
             targetValue: data.props.targetValue, 
-            cryptocurrencyId: data.props.cryptocurrencyId, userId: 
-            data.props.userId
+            cryptocurrencyId: data.props.cryptocurrencyId, 
+            userId: data.props.userId
         })
+
+        return data
+    }
+
+    async update(data: AlertModel): Promise<AlertModel> {
+        const indedxUpdate = alertData.findIndex(alert => alert.id == data.id)
+
+        alertData[indedxUpdate] = {
+            id: data.id, 
+            targetValue: data.props.targetValue, 
+            cryptocurrencyId: data.props.cryptocurrencyId, 
+            userId: data.props.userId
+        }
 
         return data
     }

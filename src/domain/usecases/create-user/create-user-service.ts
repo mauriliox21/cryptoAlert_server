@@ -10,7 +10,7 @@ export class CreateUserService {
     ){}
     
     async execute (data: User): Promise<User>{
-        this.validation.validate(data)
+        this.validation.validateCreation(data)
 
         if(await this.userRepository.findByEmail(data.props.email) != null)
             throw new RecordAlreadyExistsError("User already exists in system")

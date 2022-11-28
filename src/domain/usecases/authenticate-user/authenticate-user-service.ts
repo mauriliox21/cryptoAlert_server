@@ -1,7 +1,7 @@
 import { UserRepository } from "../../../data/contracts"
-import { AuthenticationFailedError } from "../../errors";
+import { AuthenticationFailedError } from "../../errors"
+import { generateJWTToken } from "../../providers"
 import { compare } from "bcrypt"
-import { sign } from "jsonwebtoken"
 
 export class AuthenticateUserService {
     constructor(private readonly userRepository: UserRepository ){}
@@ -17,10 +17,7 @@ export class AuthenticateUserService {
         if(!passwordMatch)
             throw new AuthenticationFailedError("User or password incorrect");
 
-        const token = sign({}, process.env.PRIVATE_KEY_JWT ?? "", {
-            subject: userAlreadyExists.id,
-            expiresIn: "1h"
-        }) 
+        const token = generateJWTToken(userAlreadyExists.id) 
 
         return {token: token}
     }

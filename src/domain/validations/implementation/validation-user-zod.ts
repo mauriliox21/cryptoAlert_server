@@ -8,8 +8,8 @@ import { z } from "zod"
  * function used to validate object User for creation, if validation fail throw error
  * @param {string} data Object type class User.
  */
-export class ValidationCreateUser implements ValidationUser {
-    validate(data: User): void {
+export class ValidationUserZod implements ValidationUser {
+    validateCreation(data: User): void {
         try{
             const validUser = z.object({
                 name: z.string({required_error: "Name is required"})

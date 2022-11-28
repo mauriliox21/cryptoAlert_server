@@ -1,5 +1,5 @@
-import { User } from "domain/entities";
+import { User } from "../../entities";
 
 export interface ValidationUser {
-    validate: (data: User) => void;
+    validateCreation: (data: User) => void;
 }
