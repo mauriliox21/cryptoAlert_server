@@ -21,7 +21,7 @@ export const alertData: FakeAlertDataType[] = [
         userId: faker.datatype.uuid()
     },
     {
-        id: faker.datatype.uuid(),
+        id: "ca9dee90-2603-4cd7-a254-37528c4ca53b",
         targetValue: 5000,
         cryptocurrencyId: faker.datatype.uuid(),
         userId: faker.datatype.uuid()

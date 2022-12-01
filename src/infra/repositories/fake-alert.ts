@@ -15,6 +15,20 @@ export class FakeAlertRepository implements AlertRepository{
         return data
     }
 
+    async findById(id: string): Promise<AlertModel | null> {
+        const alertFinded = alertData.find(alert => alert.id == id)
+
+        if(!alertFinded)
+            return null
+        else {
+            return Alert.create({
+                targetValue: alertFinded.targetValue, 
+                cryptocurrencyId: alertFinded.cryptocurrencyId,
+                userId: alertFinded.userId
+            }, alertFinded.id)
+        }
+    }
+
     async update(data: AlertModel): Promise<AlertModel> {
         const indedxUpdate = alertData.findIndex(alert => alert.id == data.id)
 
