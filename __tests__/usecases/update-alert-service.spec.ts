@@ -6,8 +6,7 @@ describe("UpdateAlertService", () => {
     it("Should be able to create a new alert", async () => {
         const sut = makeUpdateAlertService()
 
-        const alert = Alert.create({targetValue: 5000, cryptocurrencyId: "7c9c1722-78ae-4816-8a51-707996805c34", userId: "d0993234-7738-4488-a91a-021ba6a3f1ae"}, alertData[0].id)
-        console.log(alertData[0].id)
+        const alert = Alert.create({targetValue: 5000, cryptocurrencyId: "7c9c1722-78ae-4816-8a51-707996805c34", userId: "d0993234-7738-4488-a91a-021ba6a3f1ae"}, "ca9dee90-2603-4cd7-a254-37528c4ca53b")
         const alertUpdated = await sut.execute(alert)
 
         expect(alert.id).toBe(alertUpdated.id)

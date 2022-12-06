@@ -13,14 +13,14 @@ export class UpdateAlertService {
     async execute(data: Alert): Promise<Alert> {
         this.validation.validateUpdate(data)
 
-        if(!await this.alertRepository.findById(data.id))
+        if(!await this.userRepository.findById(data.props.userId))
+            throw new RecordNotFoundError("userId not found")
+
+        if(!await this.alertRepository.findById(data.id, data.props.userId))
             throw new RecordNotFoundError("alertId not found")
 
         if(!await this.cryptocurrencyRepository.findById(data.props.cryptocurrencyId))
             throw new RecordNotFoundError("cryptocurrencyId not found")
-
-        if(!await this.userRepository.findById(data.props.userId))
-            throw new RecordNotFoundError("userId not found")
 
         return this.alertRepository.update(data)
     }

@@ -20,7 +20,7 @@ export const userData: FakeUserDataType[] = [
         password: hashSync(faker.internet.password(), roundsCryptography)
     },
     {
-        id: faker.datatype.uuid(),
+        id: "81dd58d3-6ec5-489e-b698-6f802bb4578d",
         name: faker.name.fullName(),
         email: faker.internet.email(),
         password: hashSync(faker.internet.password(), roundsCryptography)
