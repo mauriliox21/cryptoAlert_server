@@ -40,7 +40,7 @@ export class ValidationAlertZod implements ValidationAlert {
         }
     }
 
-    validateFindById(data: { id: string; userId: string; }): void{
+    validateFindByIdOrDelete(data: { id: string; userId: string; }): void{
         try{
             const validPArameters = z.object({
                 id:z.string({required_error: "id is required"}).min(1, {message: "id cannot be empty"}),

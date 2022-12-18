@@ -15,6 +15,14 @@ export class FakeAlertRepository implements AlertRepository{
         return data
     }
 
+    async delete(id: string): Promise<boolean> {
+        const indedxUpdate = alertData.findIndex(alert => alert.id == id)
+
+        const alertDeleted = alertData.splice(indedxUpdate, indedxUpdate + 1)
+
+        return alertDeleted.length != 0
+    }
+
     async findById(id: string, userId: string): Promise<AlertModel | null> {
         const alertFinded = alertData.find(alert => alert.id == id && alert.userId == userId)
 

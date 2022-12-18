@@ -10,7 +10,7 @@ export class FindAlertByIdService {
         private readonly validation: ValidationAlert
     ){}
     async execute(id: string, userId: string): Promise<Alert|any>{
-        this.validation.validateFindById({id, userId})
+        this.validation.validateFindByIdOrDelete({id, userId})
         
         if(!await this.userRepository.findById(userId))
             throw new RecordNotFoundError("userId not found")
