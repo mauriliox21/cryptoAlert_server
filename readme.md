@@ -44,3 +44,6 @@ Permitir que um usuário delete um alerta
 
 ## Funcionalidade do Sistema
 O sistema deve verificar exporadicamente se algum alerta já pode ser enviado
+
+## Lembrar de Pegar o Id do Usuario no middleware que verifica se o token é valido
+## Lembrar de criar um controller que tenha a função execute abstrata e tenha as funções de retorno de acordo com o processamento

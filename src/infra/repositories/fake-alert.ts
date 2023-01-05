@@ -10,35 +10,51 @@ export class FakeAlertRepository implements AlertRepository{
             targetValue: data.props.targetValue, 
             cryptocurrencyId: data.props.cryptocurrencyId, 
             userId: data.props.userId
-        })
+        });
 
-        return data
+        return data;
     }
 
     async delete(id: string): Promise<boolean> {
-        const indedxUpdate = alertData.findIndex(alert => alert.id == id)
+        const indedxUpdate = alertData.findIndex(alert => alert.id == id);
 
-        const alertDeleted = alertData.splice(indedxUpdate, indedxUpdate + 1)
+        const alertDeleted = alertData.splice(indedxUpdate, indedxUpdate + 1);
 
-        return alertDeleted.length != 0
+        return alertDeleted.length != 0;
     }
 
     async findById(id: string, userId: string): Promise<AlertModel | null> {
-        const alertFinded = alertData.find(alert => alert.id == id && alert.userId == userId)
+        const alertFinded = alertData.find(alert => alert.id == id && alert.userId == userId);
 
         if(!alertFinded)
-            return null
+            return null;
         else {
             return Alert.create({
                 targetValue: alertFinded.targetValue, 
                 cryptocurrencyId: alertFinded.cryptocurrencyId,
                 userId: alertFinded.userId
-            }, alertFinded.id)
+            }, alertFinded.id);
         }
     }
 
+    async findMany(userId: string): Promise<AlertModel[]> {
+        const alerts = alertData.filter(alert => alert.userId == userId);
+
+        const alertsDomain: Alert[] = [];
+
+        alerts.forEach(alert => {
+            alertsDomain.push(Alert.create({
+                targetValue: alert.targetValue, 
+                cryptocurrencyId: alert.cryptocurrencyId,
+                userId: alert.userId
+            }, alert.id))
+        });
+
+        return alertsDomain;
+    }
+
     async update(data: AlertModel): Promise<AlertModel> {
-        const indedxUpdate = alertData.findIndex(alert => alert.id == data.id)
+        const indedxUpdate = alertData.findIndex(alert => alert.id == data.id);
 
         alertData[indedxUpdate] = {
             id: data.id, 
@@ -47,6 +63,6 @@ export class FakeAlertRepository implements AlertRepository{
             userId: data.props.userId
         }
 
-        return data
+        return data;
     }
 }

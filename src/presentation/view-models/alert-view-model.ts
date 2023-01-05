@@ -16,4 +16,10 @@ export class AlertViewModel {
             entity.props.userId
         )
     }
+
+    static mapCollection(listAlert: Alert[]): AlertViewModel[]{
+        const alerts: AlertViewModel[] = [];
+        listAlert.map(alert => alerts.push(AlertViewModel.map(alert)))
+        return alerts;
+    }
 }
